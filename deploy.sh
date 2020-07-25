@@ -2,7 +2,6 @@
 
 index_deploy='../index-deploy/www/'
 ignores=('projects' 'projects1')
-# ignores=('projects/' 'links/' 'a/')
 dist='./dist/'
 
 
@@ -11,12 +10,12 @@ set -e
 
 
 # 生成静态文件
-# npm run clean
-# npm run build
+npm run clean
+npm run build
 
 
 # 压缩
-# npx gulp
+npx gulp
 
 
 mkdir -p $index_deploy
