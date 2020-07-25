@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "deploy": "sh ./deploy.sh",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server",
-    "gulp": "gulp"
+    "build": "hexo generate",
+    "gulp": "gulp",
+    "server": "hexo server"
   },
   "hexo": {
     "version": "4.2.1"

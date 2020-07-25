@@ -7,7 +7,6 @@ const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
 const htmlmin = require('gulp-htmlmin');
 const gzip = require('gulp-gzip');
-const { sync } = require('del');
 
 const { copyFileX } = require('./utils');
 
@@ -90,7 +89,7 @@ function javascript() {
 const htmlTasks = [];
 function html(cb) {
     console.log("htmlTasks: ", htmlTasks.length);
-    if (htmlTasks.length === 0) return;
+    if (htmlTasks.length === 0) { cb(); return; };
     parallel(...htmlTasks)(cb);
 }
 
