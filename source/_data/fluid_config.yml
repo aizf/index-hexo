@@ -114,6 +114,14 @@ navbar:
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
     - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
     - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+    - {
+        key: 'Projects',
+        icon: 'iconfont icon-books',
+        submenu: [
+          { key: 'Exploratory Analysis System', link: '/projects/exploratory-analysis-system/' },
+          { key: 'Story Telling', link: '/projects/story-telling/' },
+        ]
+    }
     - { key: 'GitHub', link: 'https://github.com/aizf/', icon: 'iconfont icon-github-fill' }
     #- { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }  # 友链页，把前面#去掉即可展示
 
@@ -144,10 +152,10 @@ footer:
     uv_format: "总访客数 {} 人"
 
   beian:  # The footer of China's website policy, other areas keep disable
-    enable: false
-    icp_text: 京ICP证123456号 # ICP证号
-    police_text: 京公网安备12345678号 # 公安备案号，不填则只显示ICP
-    police_code: 12345678 # 公安备案的编号，用于URL跳转查询
+    enable: true
+    icp_text: 冀ICP备20017493号 # ICP证号
+    police_text: # 公安备案号，不填则只显示ICP
+    police_code: # 公安备案的编号，用于URL跳转查询
     police_icon: /img/police_beian.png # 公安备案的图片. 为空时不显示备案图片
 
 scroll_top_arrow:  # 向顶部滚动的箭头

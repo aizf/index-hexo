@@ -1,13 +1,16 @@
 #!/usr/bin/env sh
 
 notes='./source/_posts/notes/'
-index_deploy='../index-deploy/www/'
+index_deploy='../index-deploy/'
+index_deploy_index="${index_deploy}www/index/"
 ignores=('projects' 'projects1')
 dist='./dist/'
 
 
 # 确保脚本抛出遇到的错误
 set -e
+
+test -d $index_deploy || exit 1
 
 
 cd $notes
@@ -17,33 +20,17 @@ cd -
 
 # 生成静态文件,压缩
 npm run clean && npm run build && npx gulp
-
-
-test -e $index_deploy || mkdir -p $index_deploy
-
-# 删除旧文件
-cd $index_deploy
-for var in $(ls)
-do
-    # 如果$var在ignores内
-    if echo ${ignores[@]}|grep -q $var;then
-        echo "$(realpath $var) retained"
-        continue
-    else
-        rm -rf $var && echo "$(realpath $var) deleted"
-    fi
-done
-cd -
-
-
 # dist不存在则报错
-test -e $dist || exit 1
+test -d $dist || exit 1
 
+
+test -d $index_deploy_index && rm -rf $index_deploy_index
+mkdir -p $index_deploy_index
 # 复制新文件
-cp -af "$dist." $index_deploy
+cp -af "${dist}." $index_deploy_index
 
 
-cd "$index_deploy/.."
+cd $index_deploy
 git add -A && git commit -m 'deploy' && git push
 cd -
 
