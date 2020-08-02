@@ -31,7 +31,7 @@ cp -af "${dist}." $index_deploy_index
 
 
 cd $index_deploy
-git add -A && git commit -m 'deploy' && git push
+git add -A && git commit -m 'deploy' && git push || (git pull && git push)
 cd -
 
 
