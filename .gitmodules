@@ -1,0 +1,3 @@
+[submodule "source/_posts/notes"]
+	path = source/_posts/notes
+	url = git@github.com:aizf/notes.git
