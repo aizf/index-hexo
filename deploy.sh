@@ -24,12 +24,12 @@ test -d $dist || exit 1
 test -d $index_deploy_index && rm -rf $index_deploy_index
 mkdir -p $index_deploy_index
 # 复制新文件
-cp -af "${dist}." $index_deploy_index
+cp -af "${dist}." $index_deploy_index && echo "copied to $(realpath $index_deploy_index)"
 
 
-cd $index_deploy
-git add -A && git commit -m 'deploy' && git push || (git pull && git push)
-cd -
+# cd $index_deploy
+# git add -A && git commit -m 'deploy' && git push || (git pull && git push)
+# cd -
 
 
 echo "Completed !"
