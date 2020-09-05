@@ -6,6 +6,7 @@ const del = require('del');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
 const htmlmin = require('gulp-htmlmin');
+const xmlmin = require('gulp-xml');
 const gzip = require('gulp-gzip');
 
 const inputPath = path.join(__dirname, 'public');
@@ -59,18 +60,18 @@ function html() {
 
 function xml() {
     return src(path.join(inputPath, "**", '*.xml'))
-        .pipe(htmlmin({
-            collapseWhitespace: true,
-            customAttrAssign: [],
-            keepClosingSlash: true,
-            removeComments: true,
-            sortAttributes: true,
+        .pipe(xmlmin({
+            // collapseWhitespace: true,
+            // customAttrAssign: [],
+            // keepClosingSlash: true,
+            // removeComments: true,
+            // sortAttributes: true,
         }
         ))
         .pipe(dest(outputPath));
 }
 
-const minify = parallel(css, javascript, html, xml);
+const minify = parallel(css, javascript, html);
 
 function gzipFiles() {
     return src(path.join(outputPath, '**', '*.+(js|css|xml)'))
