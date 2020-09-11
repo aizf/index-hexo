@@ -1,12 +1,10 @@
 const path = require('path');
-const fs = require('fs');
 const { src, dest, series, parallel } = require('gulp');
 const del = require('del');
 // const babel = require('gulp-babel');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
 const htmlmin = require('gulp-htmlmin');
-const xmlmin = require('gulp-xml');
 const gzip = require('gulp-gzip');
 
 const inputPath = path.join(__dirname, 'public');
@@ -60,18 +58,15 @@ function html() {
 
 function xml() {
     return src(path.join(inputPath, "**", '*.xml'))
-        .pipe(xmlmin({
-            // collapseWhitespace: true,
-            // customAttrAssign: [],
-            // keepClosingSlash: true,
-            // removeComments: true,
-            // sortAttributes: true,
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            keepClosingSlash: true,
         }
         ))
         .pipe(dest(outputPath));
 }
 
-const minify = parallel(css, javascript, html);
+const minify = parallel(css, javascript, html, xml);
 
 function gzipFiles() {
     return src(path.join(outputPath, '**', '*.+(js|css|xml)'))
